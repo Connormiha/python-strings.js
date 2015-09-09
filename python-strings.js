@@ -58,8 +58,13 @@
 		},
 
 		count : function(str, start, end){
-			if(typeof(start) !== "number")start=0;
-			if(typeof(end) !== "number")end=this.length;
+			if(typeof(start) !== "number"){
+				start=0;
+			}
+
+			if(typeof(end) !== "number"){
+				end=this.length;
+			}
 			
 			var count = 0;
 			
@@ -97,7 +102,9 @@
 
 		rjust : function(width, fillchar){
 			if(this.length < width){
-				if(typeof(fillchar) !== "string" || fillchar.length !== 1)fillchar=" ";
+				if(typeof(fillchar) !== "string" || fillchar.length !== 1){
+					fillchar=" ";
+				}
 				return new Array(width - this.length + 1).join(fillchar)+this;
 			}
 			return this;
@@ -105,7 +112,9 @@
 
 		ljust : function(width, fillchar){
 			if(this.length < width){
-				if(typeof(fillchar) !== "string" || fillchar.length !== 1)fillchar=" ";
+				if(typeof(fillchar) !== "string" || fillchar.length !== 1){
+					fillchar=" ";
+				}
 				return this+new Array(width - this.length + 1).join(fillchar);
 			}
 			return this;
@@ -130,7 +139,9 @@
 		},
 
 		expandtabs : function(tabsize){
-			if(typeof(tabsize) !== "number")tabsize=8;
+			if(typeof(tabsize) !== "number"){
+				tabsize=8;
+			}
 			var space = new Array(tabsize+1).join(" ");
 			return this.replace(regTap, space);
 		},
@@ -142,9 +153,12 @@
 			}
 			return [arr[0], template, arr[1]];
 		}
-	}
+	};
 										
 	for(var key in fn){
+		if(!fn.hasOwnProperty(key)){//If was add Function.prototype.foo = 'bar'
+			continue;
+		}
 		String.prototype[key] = fn[key];
 	}
 
